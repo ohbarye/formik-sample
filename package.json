@@ -89,5 +89,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "formik": "^0.11.11",
+    "yup": "^0.24.1"
   }
 }

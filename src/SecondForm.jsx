@@ -17,7 +17,9 @@ const MyInnerForm = props => {
   } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email" style={{ display: 'block' }}>
+        Email
+      </label>
       <input
         id="email"
         placeholder="Enter your email"
@@ -49,14 +51,15 @@ const EnhancedForm = withFormik({
   handleSubmit: (values, { props, setSubmitting }) => {
     console.log(JSON.stringify(values, null, 2));
     setSubmitting(false);
-    props.history.push('/new/second');
+    props.history.push('/new/third');
   },
   displayName: 'BasicForm', // helps with React DevTools
 })(MyInnerForm);
 
-const FirstForm = props =>
+
+const SecondForm = props =>
   <div className="App">
     <EnhancedForm history={props.history}/>
   </div>
 
-export default FirstForm;
+export default SecondForm;

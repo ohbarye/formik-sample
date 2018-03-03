@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { withFormik } from 'formik';
 import DisplayFormikState from './DisplayFormikState';
@@ -17,7 +17,9 @@ const MyInnerForm = props => {
   } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email" style={{ display: 'block' }}>
+        Email
+      </label>
       <input
         id="email"
         placeholder="Enter your email"
@@ -46,17 +48,23 @@ const EnhancedForm = withFormik({
       .email('Invalid email address')
       .required('Email is required!'),
   }),
-  handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(JSON.stringify(values, null, 2));
-    setSubmitting(false);
-    props.history.push('/new/second');
+  handleSubmit: (values, { setSubmitting }) => {
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 1000);
   },
   displayName: 'BasicForm', // helps with React DevTools
 })(MyInnerForm);
 
-const FirstForm = props =>
-  <div className="App">
-    <EnhancedForm history={props.history}/>
-  </div>
+class ThirdForm extends Component {
+  render() {
+    return (
+      <div className="App">
+        <EnhancedForm />
+      </div>
+    );
+  }
+}
 
-export default FirstForm;
+export default ThirdForm;
